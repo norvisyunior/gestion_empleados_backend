@@ -5,13 +5,18 @@ import departmentRouter from "./routes/department.js";
 import employeeRouter from "./routes/employee.js";
 import salaryRouter from "./routes/salary.js";
 import leaveRouter from "./routes/leave.js";
-import settingRouter from "./routes/setting.js"
-import dashboardRouter from "./routes/dashboard.js"
+import settingRouter from "./routes/setting.js";
+import dashboardRouter from "./routes/dashboard.js";
 import connectToDataBase from "./db/db.js";
 
 connectToDataBase();
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://gestion-empleados-frontend.vercel.app/",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.static("public/uploads"));
 app.use("/api/auth", authRouter);
