@@ -46,7 +46,6 @@ const addEmployee = async (req, res) => {
       email,
       password: hashPassword,
       role,
-      profileImage: req.file ? req.file.filename : "",
     });
     const savedUser = await newUser.save();
 
