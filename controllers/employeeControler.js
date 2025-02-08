@@ -36,7 +36,7 @@ const addEmployee = async (req, res) => {
     if (user) {
       return res
         .status(400)
-        .json({ success: false, error: "user alredy registered in emp" });
+        .json({ success: false, error: "User already registered" });
     }
 
     const hashPassword = await bcrypt.hash(password, 10);
@@ -64,8 +64,8 @@ const addEmployee = async (req, res) => {
     await newEmployee.save();
     return res.status(201).json({ success: true, message: "Employee added" });
   } catch (error) {
-    console.log(error.message);
-    return res.status(500).json({ success: false, error: "error add emp" });
+    console.log("Error adding employee:", error.message);
+    return res.status(500).json({ success: false, error: "Error adding employee" });
   }
 };
 
@@ -78,7 +78,7 @@ const getEmployees = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: "get employees server error" });
+      .json({ success: false, error: "Get employees server error" });
   }
 };
 
@@ -98,7 +98,7 @@ const getEmployee = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: "get employee server error" });
+      .json({ success: false, error: "Get employee server error" });
   }
 };
 
@@ -112,12 +112,12 @@ const updateEmployee = async (req, res) => {
     if (!employee) {
       return res
         .status(404)
-        .json({ success: false, error: "employee not found" });
+        .json({ success: false, error: "Employee not found" });
     }
     const user = await User.findById({ _id: employee.userId });
 
     if (!user) {
-      return res.status(404).json({ success: false, error: "user not found" });
+      return res.status(404).json({ success: false, error: "User not found" });
     }
 
     const updateUser = await User.findByIdAndUpdate(
@@ -137,12 +137,12 @@ const updateEmployee = async (req, res) => {
     if (!updateEmployee || !updateUser) {
       return res
         .status(404)
-        .json({ success: false, error: "document not found" });
+        .json({ success: false, error: "Document not found" });
     }
-    return res.status(200).json({ success: true, message: "employee updated" });
+    return res.status(200).json({ success: true, message: "Employee updated" });
   } catch (error) {
     console.log(error.message);
-    return res.status(500).json({ success: false, error: "error update emp" });
+    return res.status(500).json({ success: false, error: "Error updating employee" });
   }
 };
 
@@ -156,7 +156,7 @@ const fetchEmployeesByDepId = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: "get employees server error" });
+      .json({ success: false, error: "Get employees server error" });
   }
 };
 
