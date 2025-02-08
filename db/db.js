@@ -1,11 +1,22 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config(); // Cargar las variables de entorno desde el archivo .env
 
 const connectToDataBase = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URL);
-    console.log("Connected to DataBase")
+    const uri = process.env.MONGODB_URL;
+    if (!uri) {
+      throw new Error("La variable de entorno MONGODB_URL no está definida");
+    }
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    console.log("Conectado a la base de datos");
   } catch (error) {
-    console.log(error);
+    console.error("Error al conectar a la base de datos", error);
+    process.exit(1);
   }
 };
 
