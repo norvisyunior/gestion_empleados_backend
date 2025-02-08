@@ -19,7 +19,7 @@ const userRegister = async () => {
       name: "Brenda",
       email: "brenda@gmail.com",
       password: hashPassword,
-      role: "admin"
+      role: "admin",
     });
     await newUser.save();
     console.log("Usuario administrador creado");
@@ -33,7 +33,12 @@ const startServer = async () => {
   await userRegister();
 
   const app = express();
-  app.use(cors());
+  app.use(
+    cors({
+      origin: "https://empleados-frontend.vercel.app/",
+      credentials: true,
+    })
+  );
   app.use(express.json());
   app.use(express.static("public/uploads"));
   app.use("/api/auth", authRouter);
