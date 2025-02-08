@@ -11,7 +11,7 @@ import connectToDataBase from "./db/db.js";
 import User from "./models/User.js";
 import bcrypt from "bcrypt";
 
-const userRegister = async () => {
+/*const userRegister = async () => {
   console.log("Conectado a la base de datos");
   try {
     const hashPassword = await bcrypt.hash("admin", 10);
@@ -26,11 +26,11 @@ const userRegister = async () => {
   } catch (error) {
     console.log(error);
   }
-};
+};*/
 
 const startServer = async () => {
   await connectToDataBase();
-  await userRegister();
+  /*await userRegister();*/
 
   const app = express();
   app.use(
