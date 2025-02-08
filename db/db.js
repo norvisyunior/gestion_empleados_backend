@@ -9,10 +9,7 @@ const connectToDataBase = async () => {
     if (!uri) {
       throw new Error("La variable de entorno MONGODB_URL no está definida");
     }
-    await mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    await mongoose.connect(uri);
     console.log("Conectado a la base de datos");
   } catch (error) {
     console.error("Error al conectar a la base de datos", error);
