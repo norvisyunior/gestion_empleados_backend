@@ -13,7 +13,7 @@ connectToDataBase();
 const app = express();
 app.use(
   cors({
-    origin: "https://gestion-empleados-frontend.vercel.app/",
+    origin: "https://gestion-empleados-frontend-2.vercel.app/",
     credentials: true,
   })
 );
