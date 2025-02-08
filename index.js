@@ -35,7 +35,7 @@ const startServer = async () => {
   const app = express();
   app.use(
     cors({
-      origin: "https://empleados-frontend-git-main-norvis-projects.vercel.app/",
+      origin: "https://empleados-frontend.vercel.app",
       credentials: true,
     })
   );
